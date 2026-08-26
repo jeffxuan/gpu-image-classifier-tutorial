@@ -2,6 +2,8 @@
 
 一份从零开始使用 Linux GPU 训练图像分类器的实践记录。项目使用 PyTorch、torchvision 和 Fashion-MNIST，在 NVIDIA GPU 上训练一个简单的 CNN。
 
+实验结果和分析见 [EXPERIMENT_REPORT.md](EXPERIMENT_REPORT.md)。
+
 ## 最终环境
 
 ```text
