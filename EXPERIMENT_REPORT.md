@@ -63,6 +63,41 @@ Sandal, Shirt, Sneaker, Bag, Ankle boot
 2. 尚未统计每个类别的准确率和混淆矩阵，因此还不知道哪些类别最容易混淆。
 3. 尚未进行 CPU/GPU 用时对比，也没有比较不同网络结构。
 
+## 分类别结果
+
+第二次实验保存了 10,000 张测试图片的逐样本预测结果，得到以下类别准确率：
+
+| 类别 | 准确率 |
+|---|---:|
+| T-shirt/top | 84.00% |
+| Trouser | 98.40% |
+| Pullover | 76.60% |
+| Dress | 86.00% |
+| Coat | 94.50% |
+| Sandal | 98.90% |
+| Shirt | 73.40% |
+| Sneaker | 97.60% |
+| Bag | 97.90% |
+| Ankle boot | 94.40% |
+
+最容易识别的是 Sandal、Trouser、Bag 和 Sneaker，它们的形状差异较明显。最难识别的是 Shirt 和 Pullover，这些类别在低分辨率灰度图片中的外形相似。
+
+## 混淆矩阵分析
+
+混淆矩阵的行是真实类别，列是预测类别。主要错误包括：
+
+```text
+T-shirt/top → Shirt       117 次
+Pullover    → Coat        139 次
+Pullover    → Shirt        78 次
+Shirt       → Coat        115 次
+Shirt       → T-shirt/top  88 次
+Dress       → Coat         69 次
+Ankle boot  → Sneaker      47 次
+```
+
+这说明模型的主要困难不是区分鞋子、包和裤子，而是区分外形相似的上衣。后续可以通过增加卷积层、加入 BatchNorm 或 Dropout、使用数据增强，以及训练更长时间来改善这部分性能。
+
 ## 后续实验计划
 
 下一轮实验应在训练脚本中保存 `history.csv`，并在测试阶段保存所有预测结果。之后生成：
