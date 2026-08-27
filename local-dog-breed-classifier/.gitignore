@@ -1,0 +1,5 @@
+.venv/
+.gradio_tmp/
+__pycache__/
+*.pt
+*.pth
